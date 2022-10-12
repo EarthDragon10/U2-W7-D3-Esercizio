@@ -35,3 +35,69 @@ let filmArchive = [
 
 let filmArchiveJSON = JSON.stringify(filmArchive);
 window.localStorage.setItem("film-archive", filmArchiveJSON);
+
+// Creare un contatore che tiene conto del tempo che passa. Aggiornando la pagina il valore
+// prosegue, chiudendo la pagina il contatore ricomincia
+
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+
+const startTimer = () => {
+	setInterval(() => {
+		seconds++;
+
+		if (seconds === 60) {
+			seconds = 0;
+		}
+
+		// secondsDisplay.innerHTML = `${seconds} secondi`;
+		window.sessionStorage.setItem("seconds", seconds);
+		displayTimer();
+	}, 1000);
+
+	setInterval(() => {
+		minutes++;
+
+		if (minutes === 60) {
+			minutes = 0;
+		}
+
+		// minutesDisplay.innerHTML = `${minutes} minuti`;
+		window.sessionStorage.setItem("minutes", minutes);
+		displayTimer();
+	}, 60000);
+
+	setInterval(() => {
+		hours++;
+
+		if (hours === 24) {
+			hours = 0;
+		}
+
+		// hoursDisplay.innerHTML = `${hours} ore`;
+		window.sessionStorage.setItem("hours", hours);
+		displayTimer();
+	}, 3600000);
+};
+
+const displayTimer = () => {
+	let hoursDisplay = document.querySelector("#hours");
+	let minutesDisplay = document.querySelector("#minutes");
+	let secondsDisplay = document.querySelector("#seconds");
+
+	secondsDisplay.innerHTML = `${Number(
+		window.sessionStorage.getItem("seconds")
+	)} secondi`;
+
+	minutesDisplay.innerHTML = `${Number(
+		window.sessionStorage.getItem("minutes")
+	)} minutes`;
+
+	hoursDisplay.innerHTML = `${Number(
+		window.sessionStorage.getItem("hours")
+	)} ore`;
+};
+
+// setInterval(() => displayTimer(), 1000);
+// displayTimer();
