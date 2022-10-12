@@ -86,6 +86,9 @@ const displayTimer = () => {
 	let minutesDisplay = document.querySelector("#minutes");
 	let secondsDisplay = document.querySelector("#seconds");
 
+	// Suggerimento di Lidia: prova a scrivere una logica per cui se c'e' qualcosa dentro il localstorage,
+	// il tempo viene dal localstorage, altrimenti parte da 0
+
 	secondsDisplay.innerHTML = `${Number(
 		window.sessionStorage.getItem("seconds")
 	)} secondi`;
