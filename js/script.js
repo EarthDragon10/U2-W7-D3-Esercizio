@@ -39,11 +39,11 @@ window.localStorage.setItem("film-archive", filmArchiveJSON);
 // Creare un contatore che tiene conto del tempo che passa. Aggiornando la pagina il valore
 // prosegue, chiudendo la pagina il contatore ricomincia
 
-let seconds = 0;
-let minutes = 0;
-let hours = 0;
-
 const startTimer = () => {
+	let seconds = 0;
+	let minutes = 0;
+	let hours = 0;
+
 	setInterval(() => {
 		seconds++;
 
@@ -89,17 +89,19 @@ const displayTimer = () => {
 	// Suggerimento di Lidia: prova a scrivere una logica per cui se c'e' qualcosa dentro il localstorage,
 	// il tempo viene dal localstorage, altrimenti parte da 0
 
-	secondsDisplay.innerHTML = `${Number(
+	let getSecondsSessionStorage = Number(
 		window.sessionStorage.getItem("seconds")
-	)} secondi`;
-
-	minutesDisplay.innerHTML = `${Number(
+	);
+	let getMinutesSessionStorage = Number(
 		window.sessionStorage.getItem("minutes")
-	)} minutes`;
+	);
+	let getHoursSessionStorage = Number(window.sessionStorage.getItem("hours"));
 
-	hoursDisplay.innerHTML = `${Number(
-		window.sessionStorage.getItem("hours")
-	)} ore`;
+	secondsDisplay.innerHTML = `${getSecondsSessionStorage} secondi`;
+
+	minutesDisplay.innerHTML = `${getMinutesSessionStorage} minutes`;
+
+	hoursDisplay.innerHTML = `${getHoursSessionStorage} ore`;
 };
 
 // setInterval(() => displayTimer(), 1000);
